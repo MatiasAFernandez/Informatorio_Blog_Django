@@ -44,7 +44,7 @@ Comprende un blog orientado a noticias y artículos
 │ │ │ │ ├── __pycache__/	    **Ignorada en el .gitignore**
 │ │ │ │ ├── local.py		    <--- Configuraciones para desarrollo local
 │ │ │ │ ├── production.py	    <--- Configuraciones para produccion
-│ │ │ │ ├── settings.py		    <--- Configuraciones base
+│ │ │ │ ├── base.py		    <--- Configuraciones base
 │ │ │ │ └── ...
 │ │ │ ├── __init__.py
 │ │ │ ├── asgi.py
