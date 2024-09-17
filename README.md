@@ -8,12 +8,6 @@ Comprende un blog orientado a noticias y artículos
 
 ```
 
-├── entorno/						<--- Carpeta del entorno
-│ ├── Scripts/
-│ │ ├── activate.bat
-│ │ ├── deactivate.bat
-│ │ └── ...
-│ └── ...
 ├── blog-repo/					<--- Carpeta del Repositorio
 │ ├── blog/					    <--- Carpeta del proyecto Django
 │ │ ├── apps/					<--- Aplicaciones Django
@@ -82,7 +76,7 @@ Comprende un blog orientado a noticias y artículos
 │ │ │ │ ├── not_found.html
 │ │ │ │ ├── internal_error.html
 │ │ │ │ └── ...
-│ │ │ ├── includes/
+│ │ │ ├── components/
 │ │ │ │ ├── base.html
 │ │ │ │ ├── footer.html
 │ │ │ │ ├── header.html
@@ -102,6 +96,12 @@ Comprende un blog orientado a noticias y artículos
 │ │ │ └── ...
 │ │ ├── db.sqlite3			    <--- Base de datos - **Ignorada en el .gitignore**
 │ │ ├── manage.py
+│ │ └── ...
+│ ├── entorno/						<--- Carpeta del entorno - **Ignorada en el .gitignore** 
+│ │ ├── Scripts/
+│ │ │ ├── activate.bat
+│ │ │ ├── deactivate.bat
+│ │ │ └── ...
 │ │ └── ...
 │ ├── .gitignore
 │ ├── README.md				    <--- Archivo README.md - Describe el proyecto
