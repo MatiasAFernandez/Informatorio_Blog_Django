@@ -4,7 +4,6 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin, PermissionRequiredMixin
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponseRedirect
-from django.contrib import messages
 from .models import Noticia, Categoria
 from .forms import Formulario_Noticia, Formulario_Modificar_Noticia
 from apps.comentarios.models import Comentario
@@ -19,18 +18,25 @@ def Home_Noticias(request):
     orden = request.GET.get("orden", "-creado")
     busqueda = request.GET.get("q", "")
 
+    todas = Noticia.objects.all()
+
     if filtro and filtro != "0":
-        categoria_seleccionada = Categoria.objects.get(pk=filtro)
-        todas = Noticia.objects.filter(categoria=categoria_seleccionada)
-    else:
-        todas = Noticia.objects.all()
+        todas = todas.filter(categorias__id=filtro)
 
     if busqueda:
         todas = todas.filter(titulo__icontains=busqueda) | todas.filter(
             contenido__icontains=busqueda
         )
 
-    todas = todas.order_by(orden)
+    # Ordenar las noticias
+    if orden == "titulo_asc":
+        todas = todas.order_by("titulo")
+    elif orden == "titulo_desc":
+        todas = todas.order_by("-titulo")
+    elif orden == "creado_asc":
+        todas = todas.order_by("creado")
+    else:  # Default to descending creation date
+        todas = todas.order_by("-creado")
 
     paginator = Paginator(todas, 5)
     page = request.GET.get("page")
@@ -43,11 +49,9 @@ def Home_Noticias(request):
         noticias = paginator.page(paginator.num_pages)
 
     contexto["noticias_populares"] = Noticia.objects.order_by("-visitas")[:3]
-
     contexto["noticias"] = noticias
 
     return render(request, "noticias/home_noticias.html", contexto)
-
 
 class Cargar_noticia(LoginRequiredMixin, CreateView):
     model = Noticia

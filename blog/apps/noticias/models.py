@@ -15,7 +15,7 @@ class Noticia(models.Model):
     titulo = models.CharField(max_length=250)
     contenido = RichTextField()
     imagen = models.ImageField(upload_to="noticias")
-    categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
+    categorias = models.ManyToManyField(Categoria)
     visitas = models.PositiveIntegerField(default=0)
     likes = models.ManyToManyField(
         settings.AUTH_USER_MODEL, related_name="not_megustas", blank=True
