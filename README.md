@@ -11,7 +11,7 @@ Comprende un blog orientado a noticias y artículos
 ├── blog-repo/					<--- Carpeta del Repositorio
 │ ├── blog/					    <--- Carpeta del proyecto Django
 │ │ ├── apps/					<--- Aplicaciones Django
-│ │ │ ├── post/
+│ │ │ ├── noticias/
 │ │ │ │ ├── __pycache__/	    **Ignorada en el .gitignore**
 │ │ │ │ ├── migrations/		    **Ignorada en el .gitignore**
 │ │ │ │ ├── __init__.py
@@ -21,8 +21,11 @@ Comprende un blog orientado a noticias y artículos
 │ │ │ │ ├── tests.py
 │ │ │ │ ├── urls.py
 │ │ │ │ └── views.py
-│ │ │ ├── user/
-│ │ │ │ ├── __pycache__/	    **Ignorada en el .gitignore**
+│ │ │ ├── usuarios/
+│ │ │ │ ├── __pycache__/        **Ignorada en el .gitignore**
+│ │ │ │ ├── templatetags/
+│ │ │ │ │ ├── __init__.py
+│ │ │ │ │ └── custom_tags.py	 
 │ │ │ │ ├── migrations/		    **Ignorada en el .gitignore**
 │ │ │ │ ├── __init__.py
 │ │ │ │ ├── admin.py
@@ -47,52 +50,46 @@ Comprende un blog orientado a noticias y artículos
 │ │ │ ├── wsgi.py
 │ │ │ └── ...
 │ │ ├── media/				    <--- Archivos multimedia - **Podria ser ignorada en el .gitignore**
-│ │ │ ├── post/
-│ │ │ │ ├── post_default.jpeg
+│ │ │ ├── noticias/
+│ │ │ │ ├── ..Imagenes..
 │ │ │ │ └── ...
-│ │ │ ├── user/
-│ │ │ │ ├── user_default.png
+│ │ │ ├── usuarios/
+│ │ │ │ ├── ..Imagenes..
 │ │ │ │ └── ...
 │ │ │ └── ...
 │ │ ├── static/				    <--- Archivos estáticos
-│ │ │ ├── assets/
-│ │ │ │ ├── img/
-│ │ │ │ ├── svg/
-│ │ │ │ ├── favicon.ico
+│ │ │ ├── img/
+│ │ │ │ ├── ..Imagenes..
 │ │ │ │ └── ...
 │ │ │ ├── css/
 │ │ │ │ ├── style.css
 │ │ │ │ └── ...
 │ │ │ ├── js/
-│ │ │ │ ├── main.js
+│ │ │ │ ├── confirmar_eliminar.js
 │ │ │ │ └── ...
 │ │ │ └── ...
 │ │ ├── templates/			    <--- Archivos templates
-│ │ │ ├── auth/
-│ │ │ │ ├── auth_login.html
-│ │ │ │ ├── auth_register.html
-│ │ │ │ └── ...
-│ │ │ ├── errors/
-│ │ │ │ ├── not_found.html
-│ │ │ │ ├── internal_error.html
-│ │ │ │ └── ...
-│ │ │ ├── components/
-│ │ │ │ ├── base.html
+│ │ │ ├── partials/
 │ │ │ │ ├── footer.html
-│ │ │ │ ├── header.html
+│ │ │ │ ├── navbar.html
 │ │ │ │ └── ...
-│ │ │ ├── post/
-│ │ │ │ ├── post_delete.html
-│ │ │ │ ├── post_detail.html
-│ │ │ │ ├── post_list.html
-│ │ │ │ ├── post_new.html
-│ │ │ │ ├── post_update.html
+│ │ │ ├── base.html
+│ │ │ ├── contacto.html
+│ │ │ ├── home.html
+│ │ │ ├── info.html
+│ │ │ └── ...
+│ │ │ ├── noticias/
+│ │ │ │ ├── cargar_noticia.html
+│ │ │ │ ├── detale_noticia.html
+│ │ │ │ ├── home_noticias.html
+│ │ │ │ ├── modificar_noticia.html
 │ │ │ │ └── ...
-│ │ │ ├── user/
-│ │ │ │ ├── user_profile.html
-│ │ │ │ ├── user_update.html
-│ │ │ │ └── ...
-│ │ │ ├── index.html
+│ │ │ ├── usuarios/
+| │ │ │ ├── registration/
+| | │ │ │ ├── password_reset_done.html
+│ │ │ │ | └── ...
+│ │ │ | ├── login.html
+│ │ │ | └── ...
 │ │ │ └── ...
 │ │ ├── db.sqlite3			    <--- Base de datos - **Ignorada en el .gitignore**
 │ │ ├── manage.py
