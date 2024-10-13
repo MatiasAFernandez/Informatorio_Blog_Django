@@ -110,7 +110,21 @@ Comprende un blog orientado a noticias y artículos
 └── ...
 
 ```
-## Super usuario
-nombre: superususario
-Email: superusuario@email.com
+## Usuarios
+```
+Super Usuario
+nombre: superuser
+Email: superuser@email.com
 contraseña: facil123
+
+Colaborador
+nombre: colaborador
+Email: colaborador@email.com
+contraseña: facil123
+
+Usuario Normal
+nombre: usuario
+Email: usuario@email.com
+contraseña: facil123
+
+```

@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin, PermissionRequiredMixin
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponseRedirect
 from django.contrib import messages
@@ -60,9 +60,8 @@ class Cargar_noticia(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class Modificar_noticia(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class Modificar_noticia(LoginRequiredMixin, UserPassesTestMixin, PermissionRequiredMixin, UpdateView):
     model = Noticia
-    fields = ['titulo', 'contenido', 'imagen', 'categoria']
     template_name = "noticias/modificar_noticia.html"
     form_class = Formulario_Modificar_Noticia
     success_url = reverse_lazy("noticias:home_noticias")
@@ -74,7 +73,7 @@ class Modificar_noticia(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def test_func(self):
         noticia = self.get_object()
-        return self.request.user == noticia.usuario or self.request.user.is_colab
+        return self.request.user == noticia.usuario or self.request.user.groups.filter(name='colaborador').exists()
 
     def handle_no_permission(self):
         noticia = self.get_object()
@@ -84,7 +83,7 @@ class Modificar_noticia(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         # Permitir a los colaboradores editar cualquier noticia
         return self.request.user.has_perm('noticias.change_noticia')
 
-class Borrar_noticia(DeleteView):
+class Borrar_noticia(PermissionRequiredMixin, DeleteView):
     model = Noticia
     permission_required = 'noticias.delete_noticia'
 
@@ -93,8 +92,7 @@ class Borrar_noticia(DeleteView):
         
     def delete(self, request, *args, **kwargs):
         noticia = self.get_object()
-
-        if request.user == noticia.usuario or request.user.is_colab:
+        if request.user == noticia.usuario or request.user.groups.filter(name='colaborador').exists():
             
             return super().delete(request, *args, **kwargs)
         else:
