@@ -12,10 +12,15 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+from django.urls import reverse_lazy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
+# AUTH
+LOGIN_REDIRECT_URL = reverse_lazy('Inicio')
+LOGOUT_REDIRECT_URL = reverse_lazy('Inicio')
+LOGIN_URL = reverse_lazy('login')   
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -32,9 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    'apps.post',
-    'apps.user',
+    'apps.noticias',
+    'apps.usuarios',
+    'ckeditor',
+    'apps.comentarios',
+    'apps.contacto',
+    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [
@@ -95,6 +103,8 @@ TIME_ZONE = 'America/Argentina/Buenos_Aires'
 
 USE_I18N = True
 
+USE_L10N = True
+
 USE_TZ = True
 
 
@@ -112,7 +122,18 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+AUTH_USER_MODEL = "usuarios.CustomUser"
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+#TODO: Cambiar EMAIL_HOST_USER
+#SMT
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER ='blog.info.cambio.climatico@gmail.com'
+EMAIL_HOST_PASSWORD = 'twlr jxwi dihu eozj'
+EMAIL_USE_SSL = False

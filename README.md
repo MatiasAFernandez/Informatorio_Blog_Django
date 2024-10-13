@@ -110,3 +110,7 @@ Comprende un blog orientado a noticias y artículos
 └── ...
 
 ```
+## Super usuario
+nombre: superususario
+Email: superusuario@email.com
+contraseña: facil123
