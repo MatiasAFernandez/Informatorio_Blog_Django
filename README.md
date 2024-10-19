@@ -2,7 +2,14 @@
 
 ## Descripción
 
-Comprende un blog orientado a noticias y artículos
+Comprende un blog orientado a noticias y artículos sobre la industria del automovilismo.
+
+## Integrantes del Equipo
+```
+ - Fernandez Matias Alejandro
+ - Ortiz Benito de Jesus
+```
+
 
 ## Estructura del proyecto
 
@@ -113,15 +120,4 @@ Super Usuario
 nombre: superuser
 Email: superuser@email.com
 contraseña: facil123
-
-Colaborador
-nombre: colaborador
-Email: colaborador@email.com
-contraseña: facil123
-
-Usuario Normal
-nombre: usuario
-Email: usuario@email.com
-contraseña: facil123
-
 ```
