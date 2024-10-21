@@ -84,8 +84,9 @@ class Modificar_noticia(LoginRequiredMixin, UserPassesTestMixin, PermissionRequi
         return redirect("noticias:detalle_noticia", pk=noticia.pk)
 
     def has_permission(self):
+        noticia = self.get_object()
         # Permitir a los colaboradores editar cualquier noticia
-        return self.request.user.has_perm('noticias.change_noticia')
+        return self.request.user.has_perm('noticias.change_noticia') or self.request.user == noticia.usuario
 
 class Borrar_noticia(PermissionRequiredMixin, DeleteView):
     model = Noticia
@@ -97,15 +98,15 @@ class Borrar_noticia(PermissionRequiredMixin, DeleteView):
     def delete(self, request, *args, **kwargs):
         noticia = self.get_object()
         if request.user == noticia.usuario or request.user.groups.filter(name='colaborador').exists():
-            
             return super().delete(request, *args, **kwargs)
         else:
             
             return HttpResponseRedirect(self.get_success_url())
     
     def has_permission(self):
+        noticia = self.get_object()
         # Permitir a los colaboradores eliminar cualquier noticia
-        return self.request.user.has_perm('noticias.delete_noticia')
+        return self.request.user.has_perm('noticias.delete_noticia') or self.request.user == noticia.usuario
 
 
 
